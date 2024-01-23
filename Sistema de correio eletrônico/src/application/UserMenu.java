@@ -17,59 +17,74 @@ public class UserMenu{
 		opcaoUserEmail = sc.nextInt();
 		switch(opcaoUserEmail) {
 			case 1:
-				for(Usuario u : usuarios) {
-					if(u.getEmail().equals(emailUser)) {
-						u.getCaixaDeEntrada().mostrarEmails();
-					}
-				}
-				System.out.println();
+				inbox(usuarios, emailUser);
 			break;
 			
 			case 2:
-				for(Usuario u : usuarios) {
-					if(u.getEmail().equals(emailUser)) {
-						u.getLixoEletronico().mostrarEmails();
-					}
-				}
-				System.out.println();
+				recycle(usuarios, emailUser);
 			break;
 			
 			case 3:
-				for(Usuario u : usuarios) {
-					if(u.getEmail().equals(emailUser)) {
-						u.getEnviados().mostrarEmails();
-					}
-				}
-				System.out.println();
+				sends(usuarios, emailUser);
 			break;
 			
 			case 4:
-				System.out.print("Digite o endereço de e-mail do destinatário: ");
-				String emailDestinatario = sc.next();
-				System.out.print("Digite o assunto do e-mail: ");
-				String assuntoEmail = sc.next();
-				sc.nextLine();
-				System.out.print("Digite o conteúdo do e-mail: ");
-				String conteudoEmail = sc.next();
-				sc.nextLine();
-				
-				Email tmpEmail = new Email(emailUser, emailDestinatario, assuntoEmail, conteudoEmail);
-				
-				for(Usuario u : usuarios) {
-					if(u.getEmail().equals(emailDestinatario)) {
-						u.getCaixaDeEntrada().adicionarEmail(tmpEmail);
-						System.out.println("Email enviado");
-						System.out.println();
-					}
-					if(u.getEmail().equals(emailUser)) {
-						u.getEnviados().adicionarEmail(tmpEmail);
-					}
-				}
-				
+				sendEmail(sc, emailUser, usuarios);
 			break;
 		}
 	}while(opcaoUserEmail != 5);
 		System.out.println();
 		
+	}
+	
+	private static void inbox(List<Usuario> usuarios, String emailUser) {
+		for(Usuario u : usuarios) {
+			if(u.getEmail().equals(emailUser)) {
+				u.getCaixaDeEntrada().mostrarEmails();
+			}
+		}
+		System.out.println();
+	}
+	
+	private static void recycle(List<Usuario> usuarios, String emailUser) {
+		for(Usuario u : usuarios) {
+			if(u.getEmail().equals(emailUser)) {
+				u.getLixoEletronico().mostrarEmails();
+			}
+		}
+		System.out.println();
+	}
+	
+	private static void sends(List<Usuario> usuarios, String emailUser) {
+		for(Usuario u : usuarios) {
+			if(u.getEmail().equals(emailUser)) {
+				u.getEnviados().mostrarEmails();
+			}
+		}
+		System.out.println();
+	}
+	
+	private static void sendEmail(Scanner sc, String emailUser, List<Usuario> usuarios) {
+		System.out.print("Digite o endereço de e-mail do destinatário: ");
+		String emailDestinatario = sc.next();
+		System.out.print("Digite o assunto do e-mail: ");
+		String assuntoEmail = sc.next();
+		sc.nextLine();
+		System.out.print("Digite o conteúdo do e-mail: ");
+		String conteudoEmail = sc.next();
+		sc.nextLine();
+		
+		Email tmpEmail = new Email(emailUser, emailDestinatario, assuntoEmail, conteudoEmail);
+		
+		for(Usuario u : usuarios) {
+			if(u.getEmail().equals(emailDestinatario)) {
+				u.getCaixaDeEntrada().adicionarEmail(tmpEmail);
+				System.out.println("Email enviado");
+				System.out.println();
+			}
+			if(u.getEmail().equals(emailUser)) {
+				u.getEnviados().adicionarEmail(tmpEmail);
+			}
+		}
 	}
 }
