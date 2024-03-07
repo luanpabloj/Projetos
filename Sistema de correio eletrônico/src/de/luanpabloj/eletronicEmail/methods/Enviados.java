@@ -1,9 +1,14 @@
-package entities;
+package de.luanpabloj.eletronicEmail.methods;
+
+import de.luanpabloj.eletronicEmail.methods.Email;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enviados {
+@Setter @Getter
+public final class Enviados {
 	
 	private List<Email> emailsEnviados;
 
@@ -11,15 +16,6 @@ public class Enviados {
 		this.emailsEnviados = new ArrayList<>();
 	}
 
-	public List<Email> getEmailsEnviados() {
-		return emailsEnviados;
-	}
-
-	public void setEmailsEnviados(List<Email> emailsEnviados) {
-		this.emailsEnviados = emailsEnviados;
-	}
-
-	
 	public Email mostrarEmails() {
 		for(Email e : emailsEnviados) {
 			System.out.println(e);
@@ -27,16 +23,12 @@ public class Enviados {
 		return null;
 	}
 
-	public Email adicionarEmail(Email email) {
+	public void adicionarEmail(Email email) {
 		emailsEnviados.add(email);
-		return null;
 	}
 
 	
 	public Email removerEmail(int posicao) {
 		return null;
 	}
-	
-	
-
 }

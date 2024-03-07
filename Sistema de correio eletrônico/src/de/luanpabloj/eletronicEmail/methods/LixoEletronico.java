@@ -1,11 +1,15 @@
-package entities;
+package de.luanpabloj.eletronicEmail.methods;
+
+import de.luanpabloj.eletronicEmail.methods.Email;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LixoEletronico {
+@Getter
+public final class LixoEletronico {
 	
-	private List<Email> emailsLixoEletronico;
+	private final List<Email> emailsLixoEletronico;
 	
 	public LixoEletronico() {
 		this.emailsLixoEletronico = new ArrayList<>();
